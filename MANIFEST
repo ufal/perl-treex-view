@@ -1,0 +1,15 @@
+Build.PL
+Changes
+INSTALL
+LICENSE
+MANIFEST
+META.json
+META.yml
+README
+README.mkdn
+dist.ini
+lib/Treex/View.pm
+lib/Treex/View/Node.pm
+lib/Treex/View/TreeLayout.pm
+script/view-treex
+t/00-compile.t

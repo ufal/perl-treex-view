@@ -1,0 +1,30 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use FindBin;
+BEGIN { unshift @INC, "$FindBin::Bin/../lib" }
+
+use Treex::View;
+use Treex::Core::Document;
+
+sub print_usage {
+  print "usage: view-treex [--pretty] file\n";
+  exit(shift);
+}
+
+my $help = 0;
+my $pretty = 0;
+GetOptions('help|h' => \$help, 'pretty|p' => \$pretty) or print_usage(1);
+print_usage(0) if $help;
+
+unless (@ARGV) {
+  print_usage(1);
+}
+
+my $view = Treex::View->new();
+my $filename = shift @ARGV;
+my $doc = Treex::Core::Document->new({ filename => $filename });
+print $view->convert($doc, $pretty);
