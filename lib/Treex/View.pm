@@ -26,7 +26,9 @@ has 'tree_layout' => (
 has 'static_dir' => (
   is => 'ro',
   default => sub {
-    my $shared_dir = eval { dist_dir(__PACKAGE__) };
+    my $package_name = __PACKAGE__;
+    $package_name =~ s/::/-/;
+    my $shared_dir = eval { dist_dir($package_name) };
 
     # Assume installation
     unless ($shared_dir) {
