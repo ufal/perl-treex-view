@@ -1,5 +1,6 @@
 package Treex::View::TreeLayout;
-
+our $AUTHORITY = 'cpan:MICHALS';
+$Treex::View::TreeLayout::VERSION = '1.0.0';
 # ABSTRACT: Helpers for delaing with p-trees and node labels
 
 use Moose;

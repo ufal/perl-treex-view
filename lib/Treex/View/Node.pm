@@ -1,5 +1,6 @@
 package Treex::View::Node;
-
+our $AUTHORITY = 'cpan:MICHALS';
+$Treex::View::Node::VERSION = '1.0.0';
 # ABSTRACT: Wrapper around Treex::Core::Node
 
 use Moose;

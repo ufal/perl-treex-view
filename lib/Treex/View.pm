@@ -1,5 +1,6 @@
 package Treex::View;
-
+our $AUTHORITY = 'cpan:MICHALS';
+$Treex::View::VERSION = '1.0.0';
 # ABSTRACT: Converts Treex::Core::Document to JSON
 
 use Moose;

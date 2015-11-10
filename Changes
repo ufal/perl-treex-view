@@ -1,13 +1,4 @@
-Revision history for {{$dist->name}}
-
-{{$NEXT}}
- [API CHANGES]
-
- [BUG FIXES]
-
- [DOCUMENTATION]
-
- [ENHANCEMENTS]
+Revision history for Treex-View
 
 1.0.0
  - Released: 2015-11-10 18:59:50 UTC
