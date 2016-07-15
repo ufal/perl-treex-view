@@ -28,18 +28,19 @@ unless (@ARGV) {
 }
 
 my $view = Treex::View->new();
-my $v = Valence->new;
-my $app = $v->require('app');
+my $valence = Valence->new;
+my $electron = $valence->require('electron');
+my $app = $electron->attr('app');
 my $filename = shift @ARGV;
 
 $app->on(ready => sub {
-  my $main_window = $v->require('browser-window')->new({
+  my $main_window = $electron->attr('BrowserWindow')->new({
     width => 1000,
     height => 600,
     title => 'Treex View',
   });
 
-  my $ipc = $v->require('ipc');
+  my $ipc = $electron->attr('ipcMain');
   my ($web_contents, $json);
 
   $ipc->on('treex-view-ready' => sub {
@@ -51,23 +52,23 @@ $app->on(ready => sub {
     $web_contents->send('file-loaded' => $json);
   });
 
-  $main_window->loadUrl('file://' . File::Spec->catfile($view->static_dir, 'index.html'));
+  $main_window->loadURL('file://' . File::Spec->catfile($view->static_dir, 'index.html'));
   $web_contents = $main_window->attr('webContents');
 });
 
 sub terminate() {
   $app->quit();
-  $v->{cv}->send();
-  undef $app; undef $v;
+  $valence->{cv}->send();
+  undef $app; undef $valence;
 }
 
 $app->on('window-all-closed' => \&terminate);
 
-$v->{hdl}->on_error(sub {
+$valence->{hdl}->on_error(sub {
   my ($handle, $fatal, $message) = @_;
   print STDERR $message;
 });
 
 $SIG{TERM} = $SIG{INT} = \&terminate;
 
-$v->run;
+$valence->run;
