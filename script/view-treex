@@ -11,7 +11,7 @@ BEGIN { unshift @INC, "$FindBin::Bin/../lib" }
 
 use Treex::View;
 use Treex::Core::Document;
-use Valence;
+use Valence 0.200;
 
 sub print_usage {
   print "usage: view-treex file\n";
